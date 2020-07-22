@@ -9,7 +9,7 @@ ps = PorterStemmer()
 nltk.data.path.append('./nltk_data')
 
 
-model = joblib.load('model.pkl')
+model = joblib.load('model2.pkl')
 print('=> Pickle Loaded : Model ')
 
 
@@ -24,7 +24,7 @@ class PredictionModel:
     # predict
     def predict(self):
         review = self.preprocess()
-        tfidfvect = joblib.load('tfidfvect.pkl')
+        tfidfvect = joblib.load('tfidfvect2.pkl')
         print('=> Pickle Loaded : Vectorizer')
         text_vect = tfidfvect.transform([review]).toarray()
         self.output['prediction'] = 'FAKE' if model.predict(text_vect) == 0 else 'REAL'
