@@ -1,0 +1,266 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Fake News Prediction</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,700,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" type="text/css" href="static/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" type="text/css" href="static/css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" type="text/css" href="static/css/magnific-popup.css">
+
+	<!-- Flexslider  -->
+	<link rel="stylesheet" type="text/css" href="static/css/flexslider.css">
+
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" type="text/css" href="static/css/owl.carousel.min.css">
+	<link rel="stylesheet" type="text/css" href="static/css/owl.theme.default.min.css">
+	
+	<!-- Flaticons  -->
+	<link rel="stylesheet" type="text/css" href="static/fonts/flaticon/font/flaticon.css">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" type="text/css" href="static/css/style.css">
+
+	<!-- Modernizr JS -->
+	<script src="../static/js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	</head>
+	<body>
+		
+	<div class="colorlib-loader"></div>
+
+	<div id="page">
+		<nav class="colorlib-nav" role="navigation">
+			<div class="top-menu">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-2 text-center">
+							<div id="colorlib-logo"><a href="/">FAKENEWS</a></div>
+						</div>
+						<div class="col-md-10 text-right menu-1">
+							<ul>
+								<li class="active"><a href="/">Home</a></li>
+								<li><a href="#">Dataset</a></li>
+								<li><a href="#">NoteBook</a></li>
+								<li><a href="#">Code Source</a></li>
+								<li class="btn-cta"><a href="#">Sign Up</a></li>
+								<li class="btn-cta"><a href="#">Login</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<div class="colorlib-intro">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center">
+						<div class="intro">
+							<h1><span style="background: #7dc710;">Fake News</span> - Machine Learning</h1>
+							<p>Fake news prediction using Machine Learning algorithms. Enter your text or generate 
+							a random one from our dataset to try it.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="row" id="colorlib-footer">
+					<div class="display-tc">
+						<form class="form-inline qbstp-header-subscribe" method="POST" action="">
+							{{ form.hidden_tag() }}
+							<!-- <div class="col-three-forth text-center col-md-offset-2">
+								<div class="form-group">
+									<textarea class="form-control"  id="email" rows="10">Enter text here...</textarea>
+									<br><br>
+									<p>
+										<a href="#" class="btn btn-primary btn-outline btn-md">Generate Text</a> 
+										<a href="#" class="btn btn-primary btn-outline btn-md">Predict</a>
+									</p>
+								</div>
+							</div> -->
+							<div class="col-three-forth text-center col-md-offset-2">
+								<div class="form-group">
+				                    {% if form.original_text.errors %}
+				                        {{ form.original_text(class="form-control form-control-lg is-invalid") }}
+				                        <div class="invalid-feedback">
+				                            {% for error in form.original_text.errors %}
+				                                <span>{{ error }}</span>
+				                            {% endfor %}
+				                        </div>
+				                    {% else %}
+				                        {{ form.original_text(class="form-control", id="email", rows="10") }}
+				                    {% endif %}
+	                			</div>
+                		    </div>
+                		    <div class="col-three-forth text-center col-md-offset-2">
+	                			<div class="form-group">
+	                				<br>
+	               					{{ form.generate(class="btn btn-primary btn-outline btn-md") }}
+	               					{{ form.predict(class="btn btn-primary btn-outline btn-md") }}
+	            				</div>
+	            			</div>
+						</form>
+					</div>
+				</div>
+
+				<div class="row" id="colorlib-footer">
+					<div class="col-three-forth text-center">
+						<br>
+						{% if output %}
+							<div class="form-group">	
+								<p>
+									<a href="#" class="btn btn-primary"><strong>Prediction : {{output['prediction']}}</strong></a>
+									<a href="#colorlib-services">See result details</a>
+								</p>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<aside id="colorlib-hero">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="flexslider">
+							<ul class="slides">
+						   	<li style="background-image: url(../static/images/img_bg_1.jpg);">
+						   		<div class="overlay"></div>
+						   	</li>
+						  	</ul>
+					  	</div>
+				  	</div>
+			  	</div>
+		  	</div>
+		</aside>
+
+		<div id="colorlib-services">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center colorlib-heading animate-box">
+						<h2>How It Works</h2>
+						<p>Fake news prediction using Machine Learning algorithms. The text is first preprocessed and 
+						transformed as a vector. Then, the vector is feeded to the trained model to be classified.</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 text-center animate-box">
+						<div class="services">
+							<span class="icon">
+								<i class="icon-lightbulb"></i>
+							</span>
+							<div class="desc">
+								<h3>Original Text</h3>
+								
+								{%if output %}
+									<p>{{ output['original'] }}</p>
+								{% else %}
+									<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line</p>
+								{% endif%}
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 text-center animate-box">
+						<div class="services">
+							<span class="icon">
+								<i class="icon-tools"></i>
+							</span>
+							<div class="desc">
+								<h3>Preprocessed Text</h3>
+								
+								{%if output %}
+									<p>{{ output['preprocessed'] }}</p>
+								{% else %}
+									<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line</p>
+								{% endif%}
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 text-center animate-box">
+						<div class="services">
+							<span class="icon">
+								<i class="icon-map"></i>
+							</span>
+							<div class="desc">
+								<h3>Transform &amp; Predict</h3>
+								
+								{%if output %}
+									<p>Text predicted as : <span class="btn btn-primary"><strong>{{ output['prediction'] }}</strong></span></p>
+								{% else %}
+									<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line</p>
+								{% endif%}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<footer id="colorlib-footer">
+			<div class="copy">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<p>
+								<small class="block"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart3" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small><br> 
+								<small class="block">Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a>, <a href="http://pexels.com/" target="_blank">Pexels</a></small>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
+	</div>
+	
+	<!-- jQuery -->
+	<script src="static/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="static/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="static/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="static/js/jquery.waypoints.min.js"></script>
+	<!-- Stellar Parallax -->
+	<script src="static/js/jquery.stellar.min.js"></script>
+	<!-- Flexslider -->
+	<script src="static/js/jquery.flexslider-min.js"></script>
+	<!-- Owl carousel -->
+	<script src="static/js/owl.carousel.min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="static/js/jquery.magnific-popup.min.js"></script>
+	<script src="static/js/magnific-popup-options.js"></script>
+	<!-- Counters -->
+	<script src="static/js/jquery.countTo.js"></script>
+	<!-- Main -->
+	<script src="static/js/main.js"></script>
+
+	</body>
+</html>
+
