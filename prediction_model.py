@@ -1,7 +1,6 @@
-
-import timeit
 from nltk.corpus import stopwords
-from sklearn.externals import joblib
+#from sklearn.externals import joblib
+import joblib
 import nltk
 import re
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -10,12 +9,10 @@ ps = PorterStemmer()
 nltk.data.path.append('./nltk_data')
 
 
-start = timeit.default_timer()
 model = joblib.load('model.pkl')
 print('=> Pickle Loaded : Model ')
 tfidfvect = joblib.load('tfidfvect.pkl')
-stop = timeit.default_timer()
-print('=> Pickle Loaded in: ', stop - start)
+print('=> Pickle Loaded : Vectorizer')
 
 
 class PredictionModel:
