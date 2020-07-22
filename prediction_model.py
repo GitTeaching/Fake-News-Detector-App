@@ -1,16 +1,18 @@
 from nltk.corpus import stopwords
-#from sklearn.externals import joblib
 import joblib
 import nltk
 import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.stem.porter import PorterStemmer
+
 ps = PorterStemmer()
 nltk.data.path.append('./nltk_data')
 
 
 model = joblib.load('model2.pkl')
 print('=> Pickle Loaded : Model ')
+tfidfvect = joblib.load('tfidfvect2.pkl')
+print('=> Pickle Loaded : Vectorizer')
 
 
 class PredictionModel:
@@ -24,8 +26,6 @@ class PredictionModel:
     # predict
     def predict(self):
         review = self.preprocess()
-        tfidfvect = joblib.load('tfidfvect2.pkl')
-        print('=> Pickle Loaded : Vectorizer')
         text_vect = tfidfvect.transform([review]).toarray()
         self.output['prediction'] = 'FAKE' if model.predict(text_vect) == 0 else 'REAL'
         return self.output
